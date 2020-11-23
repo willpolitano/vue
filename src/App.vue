@@ -2,18 +2,15 @@
   <div id="app">
     <h1>Meu primeiro componente</h1>
     <cliente/>
-    <produto/>
   </div>
 </template>
 
 <script>
 import Cliente from './components/Cliente'
-import Produto from './components/Produto'
 export default {
   name: 'App',
   components: {
-    Cliente,
-    Produto
+    Cliente
   }
 }
 </script>
