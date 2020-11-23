@@ -1,15 +1,9 @@
 <template>
     <div id="cliente">
-        <h2>Cliente aqui !!!!</h2>
+        <h1>NOME - {{ cliente.nome }}</h1>
         <hr>
-        <!-- one way data binding : leitura a variavel -->
-        <input type="text" :value="nome">
-
-        <!-- two way data binding : atualiza a variavel -->
-        <input type="text" v-model="descricao"> 
-        <hr>
-        <h1>NOME - {{ nome }}</h1>
-        <h1>DESCRICAO - {{ descricao }}</h1>
+        <p>EMAIL - {{ cliente.email }}</p>
+        <p v-show="showIdade">IDADE - {{ cliente.idade }}</p>
     </div>
 </template>
 
@@ -17,12 +11,11 @@
 export default {
     data() {
         return {
-            nome : 'Willian Politano',
-            numero : '',
-            email : '',
-            idade : 0,
-            descricao : 'LOREM IPSUM'
         }
+    },
+    props : {
+        cliente : Object,
+        showIdade: Boolean
     }
 }
 </script>
