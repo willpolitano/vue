@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <h1>Meu primeiro componente</h1>
+    <h1>Cadastro</h1>
+    <small id="nomeErro" v-show="deuErro">O campo nome é obrigatório</small><br>
+    <input type="text" placeholder="nome" v-model="nomeField"><br>
+    <input type="email" placeholder="email" v-model="emailField"><br>
+    <input type="number" placeholder="idade" v-model="idadeField"><br>
+    <button @click="cadastrarUsuario">Cadastrar</button>
 
     <div v-for="cliente in clientes" :key="cliente.id">
       <Cliente :cliente="cliente"/>
@@ -17,11 +22,10 @@ export default {
   name: 'App',
   data(){
     return {
-      clienteWill: {
-        nome: 'Willian',
-        email: 'willianpolitano@gmail.com',
-        idade: 21
-      },
+      deuErro: false,
+      nomeField: '',
+      emailField: '',
+      idadeField: 0,
       clientes: [
         {
           id: 1,
@@ -46,9 +50,28 @@ export default {
   },
   components: {
     Cliente
+  },
+  methods: {
+    cadastrarUsuario: function() {
+
+      if( this.nomeField.length == '') {
+        this.deuErro = true
+      } else {
+        this.clientes.push({
+          nome: this.nomeField,
+          email: this.emailField,
+          idade: this.idadeField,
+          id:Date.now()
+        })
+        this.deuErro = false
+      }
+    }
   }
 }
 </script>
 
 <style>
+#nomeErro {
+  color: red;
+}
 </style>
