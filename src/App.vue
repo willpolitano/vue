@@ -7,7 +7,7 @@
     <input type="number" placeholder="idade" v-model="idadeField"><br>
     <button @click="cadastrarUsuario">Cadastrar</button>
 
-    <div v-for="cliente in clientes" :key="cliente.id">
+    <div v-for="cliente in orderClientes" :key="cliente.id">
       <Cliente :cliente="cliente" @meDelete="deletarUsuario($event)"/>
       <h4>Edição</h4>
         <input type="text" v-model="cliente.nome">
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import Cliente from './components/Cliente'
 export default {
   name: 'App',
@@ -70,6 +71,11 @@ export default {
       let id = $event.id
       let novoArray = this.clientes.filter(cliente => cliente.id != id)
       this.clientes = novoArray
+    }
+  },
+  computed: {
+    orderClientes: function() {
+      return _.orderBy(this.clientes,['nome'],['asc'])
     }
   }
 }

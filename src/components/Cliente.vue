@@ -6,6 +6,7 @@
         <p v-show="showIdade">IDADE - {{ cliente.idade }}</p>
         <button @click="mudarCor">Altera cor!</button>
         <button @click="emitirEventoDelete">Deletar</button>
+        <h4>id especial - {{idEspecial}}</h4>
     </div>
 </template>
 
@@ -31,6 +32,11 @@ export default {
     filters: {
         processarEmail: function(value) {
             return value.toUpperCase()
+        }
+    },
+    computed: {
+        idEspecial: function() {
+            return (this.cliente.email + this.cliente.nome + this.cliente.id).toUpperCase();
         }
     }
 }
