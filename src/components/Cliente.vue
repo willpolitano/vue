@@ -2,7 +2,7 @@
     <div :class="{'cliente': !isPremium, 'cliente-premium': isPremium}">
         <h1>NOME - {{ cliente.nome }}</h1>
         <hr>
-        <p>EMAIL - {{ cliente.email }}</p>
+        <p>EMAIL - {{ cliente.email | processarEmail }}</p>
         <p v-show="showIdade">IDADE - {{ cliente.idade }}</p>
         <button @click="mudarCor">Altera cor!</button>
         <button @click="emitirEventoDelete">Deletar</button>
@@ -26,6 +26,11 @@ export default {
         },
         emitirEventoDelete: function() {
             this.$emit("meDelete", {id: this.cliente.id, component: this})
+        }
+    },
+    filters: {
+        processarEmail: function(value) {
+            return value.toUpperCase()
         }
     }
 }
