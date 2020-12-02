@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <h1>Meu primeiro componente</h1>
-    <input type="text" v-model="clienteWill.nome">
-    <input type="text" v-model="clienteWill.email">
-    <Cliente :cliente="clienteWill" :showIdade="true"/>
-    <Cliente :cliente="clienteWill" :showIdade="false"/>
+
+    <div v-for="cliente in clientes" :key="cliente.id">
+      <Cliente :cliente="cliente"/>
+      <h4>Edição</h4>
+        <input type="text" v-model="cliente.nome">
+        <input type="text" v-model="cliente.email">
+    </div>
   </div>
 </template>
 
@@ -15,10 +18,30 @@ export default {
   data(){
     return {
       clienteWill: {
-      nome: 'Willian',
-      email: 'willianpolitano@gmail.com',
-      idade: 21
-      }
+        nome: 'Willian',
+        email: 'willianpolitano@gmail.com',
+        idade: 21
+      },
+      clientes: [
+        {
+          id: 1,
+          nome: 'cliente1',
+          email: 'cliente1@gmail.com',
+          idade: 21
+        },
+        {
+          id: 2,
+          nome: 'cliente2',
+          email: 'cliente2@gmail.com',
+          idade: 22
+        },
+        {
+          id: 3,
+          nome: 'cliente3',
+          email: 'cliente3@gmail.com',
+          idade: 23
+        }
+      ]
     }
   },
   components: {
