@@ -5,13 +5,14 @@
     <input type="text" placeholder="nome" v-model="nomeField"><br>
     <input type="email" placeholder="email" v-model="emailField"><br>
     <input type="number" placeholder="idade" v-model="idadeField"><br>
-    <button @click="cadastrarUsuario">Cadastrar</button>
+
+    <button class="button is-primary" @click="cadastrarUsuario">Cadastrar</button><br><br>
 
     <div v-for="cliente in orderClientes" :key="cliente.id">
       <Cliente :cliente="cliente" @meDelete="deletarUsuario($event)"/>
-      <h4>Edição</h4>
         <input type="text" v-model="cliente.nome">
         <input type="text" v-model="cliente.email">
+        <br><br><br>
     </div>
   </div>
 </template>
