@@ -8,7 +8,7 @@
     <button @click="cadastrarUsuario">Cadastrar</button>
 
     <div v-for="cliente in clientes" :key="cliente.id">
-      <Cliente :cliente="cliente"/>
+      <Cliente :cliente="cliente" @meDelete="deletarUsuario($event)"/>
       <h4>Edição</h4>
         <input type="text" v-model="cliente.nome">
         <input type="text" v-model="cliente.email">
@@ -65,6 +65,11 @@ export default {
         })
         this.deuErro = false
       }
+    },
+    deletarUsuario: function($event) {
+      let id = $event.id
+      let novoArray = this.clientes.filter(cliente => cliente.id != id)
+      this.clientes = novoArray
     }
   }
 }

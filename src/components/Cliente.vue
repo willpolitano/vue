@@ -5,6 +5,7 @@
         <p>EMAIL - {{ cliente.email }}</p>
         <p v-show="showIdade">IDADE - {{ cliente.idade }}</p>
         <button @click="mudarCor">Altera cor!</button>
+        <button @click="emitirEventoDelete">Deletar</button>
     </div>
 </template>
 
@@ -22,6 +23,9 @@ export default {
     methods: {
         mudarCor: function() {
             this.isPremium = !this.isPremium
+        },
+        emitirEventoDelete: function() {
+            this.$emit("meDelete", {id: this.cliente.id, component: this})
         }
     }
 }
