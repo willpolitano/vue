@@ -4,6 +4,7 @@
         <hr>
         <p>EMAIL - {{ cliente.email }}</p>
         <p v-show="showIdade">IDADE - {{ cliente.idade }}</p>
+        <button @click="mudarCor">Altera cor!</button>
     </div>
 </template>
 
@@ -17,6 +18,11 @@ export default {
     props : {
         cliente : Object,
         showIdade: Boolean
+    },
+    methods: {
+        mudarCor: function() {
+            this.isPremium = !this.isPremium
+        }
     }
 }
 </script>
